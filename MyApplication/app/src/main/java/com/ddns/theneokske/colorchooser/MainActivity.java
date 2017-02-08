@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         editTextGroen = (EditText) findViewById(R.id.edGroen);
         editTextBlauw = (EditText) findViewById(R.id.edBlauw);
         editTextHex = (EditText) findViewById(R.id.hex);
+        editTextHex.setKeyListener(null);
         view = findViewById(R.id.kleurView);
 
         SeekBar.OnSeekBarChangeListener seekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        TextWatcher textWatcher = new TextWatcher() {
+        TextWatcher textWatcherColors = new TextWatcher() {
 
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -79,9 +80,9 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        editTextRood.addTextChangedListener(textWatcher);
-        editTextGroen.addTextChangedListener(textWatcher);
-        editTextBlauw.addTextChangedListener(textWatcher);
+        editTextRood.addTextChangedListener(textWatcherColors);
+        editTextGroen.addTextChangedListener(textWatcherColors);
+        editTextBlauw.addTextChangedListener(textWatcherColors);
 
         seekBarRood.setOnSeekBarChangeListener(seekBarChangeListener);
         seekBarGroen.setOnSeekBarChangeListener(seekBarChangeListener);
@@ -89,7 +90,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateColor(int kleur) {
-        editTextHex.setText(Integer.toHexString(kleur));
+        String test = Integer.toHexString(kleur);
+        System.out.println(test.length());
+        editTextHex.setText(test);
         view.setBackgroundColor(kleur);
     }
 }
