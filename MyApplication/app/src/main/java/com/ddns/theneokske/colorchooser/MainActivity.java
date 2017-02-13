@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
     private void updateColor(int kleur) {
         String test = Integer.toHexString(kleur);
         System.out.println(test.length());
-        editTextHex.setText(test);
+        editTextHex.setText(test.toUpperCase());
         view.setBackgroundColor(kleur);
     }
 }
