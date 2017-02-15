@@ -29,6 +29,12 @@ public class MainActivity extends AppCompatActivity {
         editTextBlauw = (EditText) findViewById(R.id.edBlauw);
         editTextHex = (EditText) findViewById(R.id.hex);
         editTextHex.setKeyListener(null);
+
+        if (savedInstanceState != null) {
+            editTextRood.setText(String.valueOf(savedInstanceState.getInt("rood")));
+            editTextGroen.setText(String.valueOf(savedInstanceState.getInt("groen")));
+            editTextBlauw.setText(String.valueOf(savedInstanceState.getInt("blauw")));
+        }
         view = findViewById(R.id.kleurView);
 
         SeekBar.OnSeekBarChangeListener seekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
@@ -87,6 +93,20 @@ public class MainActivity extends AppCompatActivity {
         seekBarRood.setOnSeekBarChangeListener(seekBarChangeListener);
         seekBarGroen.setOnSeekBarChangeListener(seekBarChangeListener);
         seekBarBlauw.setOnSeekBarChangeListener(seekBarChangeListener);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putInt("rood", Integer.parseInt(editTextRood.getText().toString()));
+        outState.putInt("groen", Integer.parseInt(editTextGroen.getText().toString()));
+        outState.putInt("blauw", Integer.parseInt(editTextBlauw.getText().toString()));
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onDestroy() {
+
+        super.onDestroy();
     }
 
     private void updateColor(int kleur) {
